@@ -44,21 +44,24 @@ process prepDatabase {
 
   # Run chewie
   chewBBACA.py AlleleCall -i chewie.in --schema-directory mlst.db -o chewie.out --cpu !{task.cpus}
-
-  # fix newline issues for later cat operations 
-  # edit: this is done by collectFile(newLine:true)
-  # find chewie.out -type f | xargs -n 1 bash -c 'echo >> $0'
   '''
 }
+
+// Aggregate allele calls into CombinedAlleleCalls channel
+//Channel
+//  .from(alleleCalls)
+//  .collectFile(name:"results_alleles.tsv", newLine:true)
+//  .set { CombinedAlleleCalls }
 
 process saveCalls {
 
   publishDir "${outdir}"
 
-  //output:
-  //file("results_alleles.tsv") into results_alleles
+  input:
+  file(alleles) from alleleCalls.collectFile(name:"results_alleles.tsv", newLine:true)
 
-  alleleCalls.collectFile(name:"results_alleles.tsv", newLine:true)
+  output:
+  file("results_alleles.tsv") into results_alleles
 
   shell:
   '''
