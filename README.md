@@ -1,4 +1,4 @@
-# twelve-parsecs
+# kessel-run
 Run ChewBBACA allele calling in nextflow
 
 # Etymology
