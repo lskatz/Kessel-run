@@ -15,6 +15,9 @@ outdir = file("${params.outdir}")
 asm_list = file(params.asm)
 asmChannel    = Channel.fromPath(asm_list).buffer(size:params.chunk)
 
+// TODO accept fastq.gz for assembly with shovill/spades
+
+// TODO separate into prepDatabase and allele calling
 process prepDatabase {
 
   input:
@@ -47,15 +50,9 @@ process prepDatabase {
   '''
 }
 
-// Aggregate allele calls into CombinedAlleleCalls channel
-//Channel
-//  .from(alleleCalls)
-//  .collectFile(name:"results_alleles.tsv", newLine:true)
-//  .set { CombinedAlleleCalls }
-
 process saveCalls {
 
-  publishDir "${outdir}"
+  publishDir "${outdir}", mode:'copy'
 
   input:
   file(alleles) from alleleCalls.collectFile(name:"results_alleles.tsv", newLine:true)
