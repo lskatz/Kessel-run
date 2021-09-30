@@ -36,7 +36,7 @@ process assembly {
   set val(samplename), file(fastqs) from fastqChannel
 
   output:
-  file("shovill.out/contigs.fa") into asmChannel
+  file("${samplename}.fa") into asmChannel
 
   shell:
   '''
@@ -47,6 +47,7 @@ process assembly {
   R1="!{fastqs[0]}"
   R2="!{fastqs[1]}"
   shovill --depth $depth --tmpdir $tempdir --outdir shovill.out --R1 $R1 --R2 $R2 --assembler spades --ram $gbMemory --cpus !{task.cpus}
+  cp -v shovill.out/contigs.fa ./!{samplename}.fa
   '''
 }
 
@@ -54,11 +55,9 @@ process prepDatabase {
 
   input:
   path(in_db)
-  file(fasta) from asmChannel
 
   output:
-  file("chewie.in") into asmDirChannel
-  path("mlst.db")   into dbChannel
+  path("mlst.db") into dbChannel
 
   shell:
   '''
@@ -67,18 +66,17 @@ process prepDatabase {
   git status
   git tag -l | grep v1
   cd -
-  git clone --branch v1 !{in_db} mlst.db
-
-  # Copy all the assemblies over to an input folder
-  mkdir -v chewie.in
-  cp -nvL !{fasta} chewie.in
+  # Clone into a temporary target
+  git clone --branch v1 !{in_db} mlst.db.tmp
+  # ... and then when it is 100% complete, rename it
+  mv mlst.db.tmp mlst.db
   '''
 }
 
 process callAlleles {
 
   input:
-  path("chewie.in") from asmDirChannel
+  file(fasta) from asmChannel.buffer(size:params.chunk)
   path("mlst.db")   from dbChannel
 
   output:
@@ -86,7 +84,12 @@ process callAlleles {
   //stdout into dbPrepped
 
   shell:
+  println "Calling alleles on "
+  println "     $fasta"
   '''
+  # Copy all the assemblies over to an input folder
+  mkdir -v chewie.in
+  cp -nvL !{fasta} chewie.in
   # Check env
   which blastn
   which chewBBACA.py
