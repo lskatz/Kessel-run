@@ -43,6 +43,6 @@ MLST.db/%.chewbbaca/.done: MLST.db speciesList.tsv
 	mv $$id.chewbbaca $$target -nv && \
 	cd $$target && git init && git add -v * .genes_list .ns_config .schema_config && \
 	git commit -m init && \
-	git tag v1 && cd -; 
+	git tag --force v1 && cd -; 
 	touch $@
 
