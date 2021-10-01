@@ -1,0 +1,112 @@
+[
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/4"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Campylobacter jejuni"
+        }
+    },
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/5"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Escherichia coli"
+        }
+    },
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/6"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Listeria monocytogenes"
+        }
+    },
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/1"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Streptococcus pyogenes"
+        }
+    },
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/3"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Arcobacter butzleri"
+        }
+    },
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/2"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Acinetobacter baumannii"
+        }
+    },
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/7"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Yersinia enterocolitica"
+        }
+    },
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/8"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Salmonella enterica"
+        }
+    },
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/9"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Streptococcus agalactiae"
+        }
+    },
+    {
+        "species": {
+            "type": "uri",
+            "value": "https://chewbbaca.online/NS/api/species/10"
+        },
+        "name": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string",
+            "value": "Brucella melitensis"
+        }
+    }
+]
