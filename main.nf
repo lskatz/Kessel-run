@@ -77,11 +77,11 @@ process callAlleles {
 
   input:
   file(fasta) from asmChannel.buffer(size:params.chunk)
-  path("mlst.db")   from dbChannel
+  path("mlst.db") from dbChannel
 
   output:
   file("chewie.out/*/results_alleles.tsv") into alleleCalls
-  //stdout into dbPrepped
+  //path("mlst.db") into modifiedDbChannel
 
   shell:
   println "Calling alleles on "
@@ -107,6 +107,7 @@ process saveCalls {
 
   input:
   file(alleles) from alleleCalls.collectFile(name:"results_alleles.tsv", newLine:true)
+  //path("mlst.modified.db") from modifiedDbChannel
 
   output:
   file("results_alleles.tsv") into results_alleles
